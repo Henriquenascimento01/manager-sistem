@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\ProductRequest;
+use App\Models\Product;
+use App\Repositories\ProductRepository;
 
 class ProductController extends Controller
 {
@@ -13,7 +15,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('products.index');
+        $products = ProductRepository::all();
+
+        return view('products.index', compact('products'));
     }
 
     /**
@@ -23,7 +27,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('products.create');
     }
 
     /**
@@ -32,9 +36,11 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-        //
+        ProductRepository::create($request);
+
+        return redirect('/products');
     }
 
     /**
@@ -54,9 +60,9 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Product $product)
     {
-        //
+        return view('products.edit', \compact('product'));
     }
 
     /**
@@ -66,9 +72,11 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProductRequest $request, $id)
     {
-        //
+        ProductRepository::update($request, $id);
+
+        return redirect('/products');
     }
 
     /**
@@ -79,6 +87,12 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            ProductRepository::destroy($id);
+
+            return back();
+        } catch (\PDOException) {
+            return back();
+        }
     }
 }

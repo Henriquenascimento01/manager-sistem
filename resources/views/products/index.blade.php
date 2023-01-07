@@ -6,7 +6,7 @@
 
  @section('breadcrumb')
  <li class="breadcrumb-item">
-     <a href="{{ route('products.index') }}">Cadastrar produto</a>
+     <a href="#">Resumo</a>
  </li>
  @endsection
 
@@ -19,7 +19,7 @@
                  <div class="card-header">
                      <h3 class="card-title">Listagem</h3>
                      <div class="card-tools">
-                         <a href="" class="btn btn-success">Cadastrar produto</a>
+                         <a href="{{ route('products.create')}}" class="btn btn-success">Cadastrar produto</a>
                      </div>
                  </div>
                  <div class="card-body">
@@ -27,69 +27,45 @@
                          <table class="table">
                              <thead>
                                  <tr>
-                                     <th style="width: 10px">#</th>
-                                     <th>Task</th>
-                                     <th>Progress</th>
-                                     <th style="width: 40px">Label</th>
+                                     <th>Nome</th>
+                                     <th>Categoria</th>
+                                     <th>Status</th>
                                  </tr>
                              </thead>
                              <tbody>
+                                 @foreach($products as $product)
                                  <tr>
-                                     <td>1.</td>
-                                     <td>Update software</td>
+                                     <td>{{ $product->name }}</td>
+                                     <td>{{ $product->category}}</td>
+                                     <td>{{ $product->status}}</td>
+
                                      <td>
-                                         <div class="progress progress-xs">
-                                             <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                                         </div>
+                                         <a href="{{ route('products.edit', $product ) }}" class="btn btn-warning">Editar</a>
                                      </td>
-                                     <td><span class="badge bg-danger">55%</span></td>
-                                 </tr>
-                                 <tr>
-                                     <td>2.</td>
-                                     <td>Clean database</td>
                                      <td>
-                                         <div class="progress progress-xs">
-                                             <div class="progress-bar bg-warning" style="width: 70%"></div>
-                                         </div>
+                                         <a href="#" class="btn btn-secondary">Bloquear</a>
                                      </td>
-                                     <td><span class="badge bg-warning">70%</span></td>
-                                 </tr>
-                                 <tr>
-                                     <td>3.</td>
-                                     <td>Cron job running</td>
                                      <td>
-                                         <div class="progress progress-xs progress-striped active">
-                                             <div class="progress-bar bg-primary" style="width: 30%"></div>
-                                         </div>
+                                         <form action="{{ route('products.destroy', $product) }}" method="POST" class="form-group">
+                                             @csrf
+                                             @method('DELETE')
+                                             <button type="submit" class="btn btn-danger">Apagar</button>
+                                         </form>
                                      </td>
-                                     <td><span class="badge bg-primary">30%</span></td>
+
                                  </tr>
-                                 <tr>
-                                     <td>4.</td>
-                                     <td>Fix and squish bugs</td>
-                                     <td>
-                                         <div class="progress progress-xs progress-striped active">
-                                             <div class="progress-bar bg-success" style="width: 90%"></div>
-                                         </div>
-                                     </td>
-                                     <td><span class="badge bg-success">90%</span></td>
-                                 </tr>
+                                 @endforeach
                              </tbody>
                          </table>
                      </div>
-                 </div>
 
-                 <div class="card-footer clearfix">
-                     <ul class="pagination pagination-md m-0 float-right">
-                         <li class="page-item"><a class="page-link" href="#">«</a></li>
-                         <li class="page-item"><a class="page-link" href="#">1</a></li>
-                         <li class="page-item"><a class="page-link" href="#">2</a></li>
-                         <li class="page-item"><a class="page-link" href="#">3</a></li>
-                         <li class="page-item"><a class="page-link" href="#">»</a></li>
-                     </ul>
+                     <div class="card-footer clearfix">
+                         <div>
+                             {{ $products->links() }}
+                         </div>
+                     </div>
                  </div>
              </div>
          </div>
      </div>
- </div>
- @endsection
+     @endsection

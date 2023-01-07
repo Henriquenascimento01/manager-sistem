@@ -78,12 +78,12 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="../../index.html" class="nav-link">
+                            <a href="{{ route('products.create') }}" class="nav-link">
                                 <p>Novo produto</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="../../index2.html" class="nav-link">
+                            <a href="{{ route('products.index') }}" class="nav-link">
                                 <p>Lista de produtos</p>
                             </a>
                         </li>
