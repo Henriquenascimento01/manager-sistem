@@ -7,6 +7,7 @@ use App\Http\Requests;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Repositories\UserRepository;
 use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
@@ -16,19 +17,9 @@ class UsersController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function index(Request $request)
+    public function index()
     {
-        $keyword = $request->get('search');
-        $per_page = 25;
-
-        if (!empty($keyword)) {
-            $users = User::where('name', 'LIKE', "%$keyword%")
-                ->orWhere('email', 'LIKE', "%$keyword%")
-                ->orWhere('password', 'LIKE', "%$keyword%")
-                ->latest()->paginate($per_page);
-        } else {
-            $users = User::latest()->paginate($per_page);
-        }
+        $users = UserRepository::all();
 
         return view('users.index', compact('users'));
     }
@@ -57,13 +48,10 @@ class UsersController extends Controller
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed'
         ]);
-        $request_data = $request->all();
-        $request_data['password'] = Hash::make($request_data['password']);
 
-        User::create($request_data);
+        UserRepository::create($request);
 
-
-        return redirect('users')->with('flash_message', 'User added!');
+        return redirect('/users');
     }
 
     /**
@@ -75,7 +63,7 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        $user = User::findOrFail($id);
+        $user =  UserRepository::details($id);
 
         return view('users.show', compact('user'));
     }
@@ -89,7 +77,7 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        $user = User::findOrFail($id);
+        $user = UserRepository::edit($id);
 
         return view('users.edit', compact('user'));
     }
@@ -109,11 +97,8 @@ class UsersController extends Controller
             'email' => 'required|email|max:255',
             'password' => 'required|string|min:8|confirmed'
         ]);
-        $request_data = $request->all();
-        $request_data['password'] = Hash::make($request_data['password']);
 
-        $user = User::findOrFail($id);
-        $user->update($request_data);
+        UserRepository::update($request, $id);
 
         return redirect('users')->with('flash_message', 'User updated!');
     }
@@ -127,8 +112,15 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        User::destroy($id);
+        UserRepository::destroy($id);
 
         return redirect('users')->with('flash_message', 'User deleted!');
+    }
+
+    public function block(User $user)
+    {
+        UserRepository::block($user->id);
+
+        return back();
     }
 }

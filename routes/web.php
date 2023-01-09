@@ -25,6 +25,10 @@ Auth::routes();
 
 Route::middleware('auth')->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
+
     Route::resource('products', 'ProductController');
+    Route::patch('/producs/{product}', 'ProductController@block')->name('products-block');
+
     Route::resource('users', 'UsersController');
+    Route::patch('/users/{user}', 'UsersController@block')->name('users-block');
 });

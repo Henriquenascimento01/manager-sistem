@@ -43,9 +43,9 @@
                                          <a href="{{ route('products.edit', $product ) }}" class="btn btn-warning">Editar</a>
                                      </td>
                                      <td>
-                                         <form action="{{ route('products.destroy', $product) }}" method="POST" class="form-group">
+                                         <form action="{{ route('products-block', $product) }}" method="POST" class="form-group">
                                              @csrf
-                                             @method('DELETE')
+                                             @method('PATCH')
                                              <button type="submit" class="btn btn-primary">Bloquear</button>
                                          </form>
                                      </td>
@@ -65,7 +65,7 @@
 
                      <div class="card-footer clearfix">
                          <div>
-                             {{ $products->links() }}
+                             <!-- {{ $products->links() }} -->
                          </div>
                      </div>
                  </div>

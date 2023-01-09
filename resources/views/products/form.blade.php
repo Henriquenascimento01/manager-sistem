@@ -37,7 +37,7 @@
         <select name="status" id="status" class="form-control mt-4">
             <option selected="disabled" name="status" value="">Selecione</option>
             <option name="status" value="ativo">Ativo</option>
-            <option name="status" value="inativo">Disponivel</option>
+            <option name="status" value="inativo">Inativo</option>
         </select>
     </div>
 

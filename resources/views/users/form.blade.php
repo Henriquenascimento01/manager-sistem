@@ -8,6 +8,16 @@
     <input class="form-control" name="email" type="email" id="email" value="{{ isset($user->email) ? $user->email : ''}}" required>
     {!! $errors->first('email', '<p class="help-block">:message</p>') !!}
 </div>
+
+<div class="form-group">
+<label for="permission" class="col-form-label required">Permissão</label>
+    <select name="permission" id="permission" class="form-control">
+        <option selected="disabled" name="permission" value="">Selecione</option>
+        <option name="permission" value="admin">Administrador</option>
+        <option name="permission" value="client">Client</option>
+    </select>
+</div>
+
 <div class="form-group {{ $errors->has('password') ? 'has-error' : ''}}">
     <label for="password" class="control-label">Senha</label>
     <input class="form-control" name="password" type="password" id="password" required>

@@ -10,6 +10,7 @@ class ProductRepository
 
     public static function all()
     {
+
         $products = Product::paginate(10);
 
         return $products;
@@ -63,13 +64,14 @@ class ProductRepository
     {
         $product = Product::findOrFail($id);
 
-        $product->delete();
+        $product->forceDelete();
     }
 
-    // public static function block($id)
-    // {
-    //     $product = Product::findOrFail($id);
+    public static function block($id)
+    {
+        $product = Product::findOrFail($id);
+        $product->update(['status' => 'inativo']);
 
-    //     $product->delete();
-    // }
+        $product->delete();
+    }
 }

@@ -51,7 +51,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -97,6 +97,9 @@ class ProductController extends Controller
     }
 
     public function block(Product $product)
-    {
+    {   
+        ProductRepository::block($product->id);
+
+        return back();
     }
 }

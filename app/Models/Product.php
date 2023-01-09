@@ -28,11 +28,7 @@ class Product extends Model
         return $this->belongsTo(Orders::class);
     }
 
-    // public function user()
-    // {
-    //     return $this->belongsTo(User::class);
-    // }
-
+    
     public function products_input()
     {
         return $this->hasMany(Products_input::class);
