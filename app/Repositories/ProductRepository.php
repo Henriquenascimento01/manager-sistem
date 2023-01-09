@@ -63,6 +63,13 @@ class ProductRepository
     {
         $product = Product::findOrFail($id);
 
+        $product->forceDelete();
+    }
+
+    public static function block($id)
+    {
+        $product = Product::findOrFail($id);
+
         $product->delete();
     }
 }

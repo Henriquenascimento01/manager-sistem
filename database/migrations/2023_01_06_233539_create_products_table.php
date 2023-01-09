@@ -20,9 +20,9 @@ class CreateProductsTable extends Migration
             $table->string('image');
             $table->string('category');
             $table->integer('max_quantity');
-            $table->float('unity_price'); 
-            $table->string('status'); 
-
+            $table->float('unity_price');
+            $table->enum('status', ['ativo', 'inativo']);
+            $table->softDeletes();
         });
     }
 

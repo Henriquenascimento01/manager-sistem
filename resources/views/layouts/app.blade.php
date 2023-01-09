@@ -24,7 +24,11 @@
 <body class="hold-transition sidebar-mini layout-fixed">
     <div id="app" class="wrapper">
 
+        @auth
+
         @include('layouts.lateral-menu')
+
+        @endauth
 
         <div class="content-wrapper">
             <section class="content-header">

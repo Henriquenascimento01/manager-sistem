@@ -36,8 +36,8 @@
     <div class="col-sm-10">
         <select name="status" id="status" class="form-control mt-4">
             <option selected="disabled" name="status" value="">Selecione</option>
-            <option name="status" value="disponivel">Disponivel</option>
-            <option name="status" value="indisponivel">Indisponivel</option>
+            <option name="status" value="ativo">Ativo</option>
+            <option name="status" value="inativo">Disponivel</option>
         </select>
     </div>
 

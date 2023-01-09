@@ -92,7 +92,11 @@ class ProductController extends Controller
 
             return back();
         } catch (\PDOException) {
-            return back();
+            return back()->WithError();
         }
+    }
+
+    public function block(Product $product)
+    {
     }
 }

@@ -43,7 +43,11 @@
                                          <a href="{{ route('products.edit', $product ) }}" class="btn btn-warning">Editar</a>
                                      </td>
                                      <td>
-                                         <a href="#" class="btn btn-secondary">Bloquear</a>
+                                         <form action="{{ route('product-block', ['id' => $product->id]) }}" method="POST" class="form-group">
+                                             @csrf
+                                             @method('DELETE')
+                                             <button type="submit" class="btn btn-info">Bloquear</button>
+                                         </form>
                                      </td>
                                      <td>
                                          <form action="{{ route('products.destroy', $product) }}" method="POST" class="form-group">

@@ -9,7 +9,7 @@
 
             </div>
             <div class="info">
-                <a href="#" class="d-block">{{ Auth::user()->name }}</a>
+                <a href="#" class="d-block">{{ Auth::user()->name ?? 'None' }}</a>
                 <a class="btn btn-danger btn-sm" href="{{ route('logout') }}" onclick="event.preventDefault();	
                             document.getElementById('logout-form').submit();">
                     Sair
