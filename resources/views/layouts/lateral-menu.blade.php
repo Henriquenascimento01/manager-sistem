@@ -56,12 +56,12 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="../../index.html" class="nav-link">
-                                <p>Novos usuários</p>
+                            <a href="{{ route('users.create') }}" class="nav-link">
+                                <p>Cadastrar usuário</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="../../index2.html" class="nav-link">
+                            <a href="{{ route('users.index') }}" class="nav-link">
                                 <p>Lista de usuários</p>
                             </a>
                         </li>
@@ -79,7 +79,7 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="{{ route('products.create') }}" class="nav-link">
-                                <p>Novo produto</p>
+                                <p>Cadastrar produto</p>
                             </a>
                         </li>
                         <li class="nav-item">

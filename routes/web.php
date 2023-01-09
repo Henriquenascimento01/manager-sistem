@@ -21,8 +21,10 @@ Route::get('/', [SiteController::class, 'index'])->name('marketplace');
 
 
 Auth::routes();
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-Route::resource('products', 'ProductController');
-Route::delete('/products/{id}', [ProductController::class, 'block'])->name('product-block');
+Route::middleware('auth')->group(function () {
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::resource('products', 'ProductController');
+    Route::resource('users', 'UsersController');
+});

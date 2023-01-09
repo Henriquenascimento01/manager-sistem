@@ -12,7 +12,7 @@
 
 
  @section('content')
- <div class="container">
+ <div class="container-fluid">
      <div class="row justify-content-center">
          <div class="col-md-12">
              <div class="card">
@@ -43,10 +43,10 @@
                                          <a href="{{ route('products.edit', $product ) }}" class="btn btn-warning">Editar</a>
                                      </td>
                                      <td>
-                                         <form action="{{ route('product-block', ['id' => $product->id]) }}" method="POST" class="form-group">
+                                         <form action="{{ route('products.destroy', $product) }}" method="POST" class="form-group">
                                              @csrf
                                              @method('DELETE')
-                                             <button type="submit" class="btn btn-info">Bloquear</button>
+                                             <button type="submit" class="btn btn-primary">Bloquear</button>
                                          </form>
                                      </td>
                                      <td>

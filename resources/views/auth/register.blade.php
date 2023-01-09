@@ -68,7 +68,7 @@
                                     {{ __('Registrar-se') }}
                                 </button>
                                 <button type="submit" class="btn btn-warning">
-                                   <a href="/">Voltar</a>
+                                    <a href="/">Voltar</a>
                                 </button>
                             </div>
                         </div>
