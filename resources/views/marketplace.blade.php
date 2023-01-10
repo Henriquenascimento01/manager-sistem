@@ -134,7 +134,14 @@
                 <img src="/img/movies/{{ $product->image }}" alt="{{ $product->name }}">
                 <div class="card-body">
                     <h5 class="card-name">{{ $product->name }}</h5>
-                    <a href="#" class="btn btn-primary">Comprar</a>
+                    <form action="{{ route('cart.store') }}" method="POST" enctype="multpart/form-data">
+                        @csrf
+                        <input type="hidden" name="id" value="{{ $product->id }}">
+                        <input type="hidden" name="name" value="{{ $product->name }}">
+                        <input type="hidden" name="price" value="{{ $product->unity_price }}">
+                        <input type="number" class="form-control" name="quantity" value="0">
+                        <button class="btn btn-primary mt-2">Comprar</button>
+                    </form>
                 </div>
             </div>
             @endforeach

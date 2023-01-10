@@ -9,13 +9,13 @@ class UserRepository
 {
     public static function all()
     {
-        $products = User::paginate(10);
+        $user = User::paginate(10);
 
-        return $products;
+        return $user;
     }
 
     public static function create($request)
-    {  // dd($request); 
+    {  
         $request_data = $request->all();
         $request_data['password'] = Hash::make($request_data['password']);
 

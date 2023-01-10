@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\ProductRepository;
+use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 
 class SiteController extends Controller
@@ -15,8 +16,9 @@ class SiteController extends Controller
     public function index()
     {
         $products = ProductRepository::all();
+        $user = UserRepository::all();
 
-        return view('marketplace', compact('products'));
+        return view('marketplace', compact('products', 'user'));
     }
 
     /**

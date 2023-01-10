@@ -100,8 +100,22 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="../../index.html" class="nav-link">
-
                                 <p>Lista de pedidos</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <p>
+                            Meus pedidos
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('cart.index') }}" class="nav-link">
+                                <p>Carrinho</p>
                             </a>
                         </li>
                     </ul>

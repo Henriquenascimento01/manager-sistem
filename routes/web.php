@@ -31,4 +31,8 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('users', 'UsersController');
     Route::patch('/users/{user}', 'UsersController@block')->name('users-block');
+
+    Route::resource('/cart', 'CartController');
+    Route::post('/delete-items', 'CartController@remove_items')->name('remove-items');
+    Route::post('/confirmed-order', 'CartController@confirmed_order')->name('confirmed-order');
 });
