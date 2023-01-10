@@ -3,12 +3,13 @@
 namespace App\Repositories;
 
 use App\Models\Orders;
+use Illuminate\Support\Facades\Auth;
 
 class OrderRepository
 {
     public static function all_orders()
     {
-        $orders = Orders::all();
+        $orders = Orders::where('user_id', Auth::user()->id)->get();
 
         return $orders;
     }

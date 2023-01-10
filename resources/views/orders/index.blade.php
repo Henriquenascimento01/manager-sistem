@@ -42,7 +42,6 @@
                                     <td>{{ $order->product_name}}</td>
                                     <td>{{ $order->user_id}}</td>
                                     <td>{{ $order->quantity}}</td>
-
                                     <td>
                                         <a href="#" class="btn btn-warning">Editar</a>
                                     </td>
@@ -58,7 +57,6 @@
                             </tbody>
                         </table>
                     </div>
-
                     <div class="card-footer clearfix">
                     </div>
                 </div>

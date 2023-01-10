@@ -9,7 +9,7 @@ use App\Repositories\OrderRepository;
 class OrdersController extends Controller
 {
     public function index()
-    {
+    {   
         $orders = OrderRepository::all_orders();
 
         return view('orders.index', compact('orders'));
