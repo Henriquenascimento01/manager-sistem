@@ -34,5 +34,6 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('/cart', 'CartController');
     Route::post('/delete-items', 'CartController@remove_items')->name('remove-items');
-    Route::post('/confirmed-order', 'CartController@confirmed_order')->name('confirmed-order');
+
+    Route::resource('/order', 'OrdersController'); 
 });

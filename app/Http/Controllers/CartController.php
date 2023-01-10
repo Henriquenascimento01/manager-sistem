@@ -30,27 +30,27 @@ class CartController extends Controller
         return back()->with('msg', 'Produto removido do carrinho');
     }
 
-    public function confirmed_order(Request $request)
-    {
-        $user_id = Auth::id();
-        $orders = json_decode($request->order);
+    // public function confirmed_order(Request $request)
+    // {
+    //     $user_id = Auth::id();
+    //     $orders = json_decode($request->order);
 
-        $confirmed_orders = [];
+    //     $confirmed_orders = [];
 
-        foreach ($orders as $order) {
-            $product_id = $order->id;
-            $quantity = $order->quantity;
+    //     foreach ($orders as $order) {
+    //         $product_id = $order->id;
+    //         $quantity = $order->quantity;
 
-            OrderRepository::create_order($product_id, $user_id, $quantity);
+    //         OrderRepository::create_order($product_id, $user_id, $quantity);
 
-            array_push($confirmed_orders, (object)[
-                'product_id' => $product_id,
-                'product_name' => $order->name,
-                'user_id' => $user_id,
-                'quantity' => $quantity,
-            ]);
-        }
-        
-        return view('orders.index', compact('confirmed_orders'));
-    }
+    //         array_push($confirmed_orders, (object)[
+    //             'product_id' => $product_id,
+    //             'product_name' => $order->name,
+    //             'user_id' => $user_id,
+    //             'quantity' => $quantity,
+    //         ]);
+    //     }
+
+    //     return view('orders.index', compact('confirmed_orders'));
+    // }
 }

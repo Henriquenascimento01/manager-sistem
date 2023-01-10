@@ -36,7 +36,7 @@
                             </thead>
 
                             <tbody>
-                                <form action="{{ route('confirmed-order') }}" method="POST">
+                                <form action="{{ route('order.store') }}" method="POST">
                                     @csrf
                                     <input type="hidden" value="{{ $items }}" name="order">
                                     <button class="btn btn-success">Confirmar pedido</button>

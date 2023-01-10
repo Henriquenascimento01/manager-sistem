@@ -20,6 +20,11 @@
                     <h3 class="card-title">Listagem</h3>
                 </div>
                 <div class="card-body">
+                    @if($message = Session::get('msg') )
+                    <p class="alert alert-success">
+                        {{ $message }}
+                    </p>
+                    @endif
                     <div class="card-body p-0">
                         <table class="table">
                             <thead>
@@ -31,7 +36,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($confirmed_orders as $order)
+                                @foreach($orders as $order)
                                 <tr>
                                     <td>{{ $order->product_id }}</td>
                                     <td>{{ $order->product_name}}</td>
@@ -42,20 +47,12 @@
                                         <a href="#" class="btn btn-warning">Editar</a>
                                     </td>
                                     <td>
-                                        <form action="#" method="POST" class="form-group">
-                                            @csrf
-                                            @method('PATCH')
-                                            <button type="submit" class="btn btn-primary">Bloquear</button>
-                                        </form>
-                                    </td>
-                                    <td>
-                                        <form action="#" method="POST" class="form-group">
+                                        <form action="{{ route('order.destroy', $order) }}" method="POST" class="form-group">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger">Apagar</button>
                                         </form>
                                     </td>
-
                                 </tr>
                                 @endforeach
                             </tbody>
