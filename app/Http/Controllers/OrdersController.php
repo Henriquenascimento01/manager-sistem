@@ -5,13 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Repositories\OrderRepository;
+use App\Services\ProductStockManager;
 
 class OrdersController extends Controller
 {
     public function index()
-    {    
-       // $this->authorize('is_admin');
-   
+    {
         $orders = OrderRepository::all_orders();
 
         return view('orders.index', compact('orders'));
@@ -28,15 +27,19 @@ class OrdersController extends Controller
             $product_id = $order->id;
             $quantity = $order->quantity;
 
-            OrderRepository::create_order($product_id, $user_id, $quantity);
+            $created_order = OrderRepository::create_order($product_id, $user_id, $quantity);
 
             array_push($confirmed_orders, (object)[
                 'product_id' => $product_id,
                 'product_name' => $order->name,
                 'user_id' => $user_id,
                 'quantity' => $quantity,
+                'order_id' => $created_order->id,
             ]);
+
+            ProductStockManager::remove_product_from_stock($product_id, $quantity);
         }
+
         return redirect('/order');
     }
 

@@ -15,7 +15,7 @@ class UserOrderedItems
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $user_order;
+    // public $user_order;
 
     /**
      * Create a new event instance.
@@ -24,7 +24,7 @@ class UserOrderedItems
      */
     public function __construct(Orders $user_order)
     {
-        $this->user_order = $user_order;
+        // $this->user_order = $user_order;
     }
 
     /**

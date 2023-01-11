@@ -12,6 +12,11 @@
                     <br />
                     <br />
                     <div class="table-responsive">
+                        @if($message = Session::get('msg') )
+                        <p class="alert alert-success">
+                            {{ $message }}
+                        </p>
+                        @endif
                         <table class="table">
                             <thead>
                                 <tr>
@@ -22,16 +27,16 @@
                                 </tr>
                             </thead>
                             <tbody>
-                               @foreach($users as $user)
+                                @foreach($users as $user)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>
-                                        <form method="POST" action="{{ route('unblock-users', $user->id ) }}" accept-charset="UTF-8" style="display:inline">
-                                        @csrf
-                                            {{ method_field('PUT') }}
-                                            <button type="submit" class="btn btn-warning btn-sm" title="Delete User" onclick="return confirm(&quot;Deseja mesmo bloquear ?&quot;"><i class="fa fa-trash-o" aria-hidden="true"></i> Desbloquear</button>
+                                        <form action="{{ route('unblock-users', $user) }}" method="POST" class="form-group">
+                                            @csrf
+                                            @method('PATCH')
+                                            <button type="submit" class="btn btn-primary">Desbloquear</button>
                                         </form>
                                     </td>
                                 </tr>

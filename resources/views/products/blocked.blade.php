@@ -38,10 +38,10 @@
                                      <td>{{ $product->category}}</td>
                                      <td>{{ $product->status}}</td>
                                      <td>
-                                         <form action="{{ route('products-block', $product->id ) }}" method="POST" class="form-group">
+                                         <form action="{{ route('unblock-product', $product) }}" method="POST" class="form-group">
                                              @csrf
                                              @method('PATCH')
-                                             <button type="submit" class="btn btn-warning">Desbloquear</button>
+                                             <button type="submit" class="btn btn-primary">Desbloquear</button>
                                          </form>
                                      </td>
                                      <td>

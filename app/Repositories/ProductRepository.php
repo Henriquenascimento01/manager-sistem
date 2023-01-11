@@ -79,4 +79,9 @@ class ProductRepository
     {
         return Product::onlyTrashed()->get();
     }
+
+    public static function unblock($id)
+    {
+        return Product::withTrashed()->find($id)->restore();
+    }
 }

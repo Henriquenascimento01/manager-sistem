@@ -28,7 +28,7 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {   
+    {
         $this->authorize('is_admin');
 
         return view('products.create');
@@ -41,7 +41,7 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(ProductRequest $request)
-    {   
+    {
         $this->authorize('is_admin');
 
         ProductRepository::create($request);
@@ -66,7 +66,7 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Product $product)
-    {   
+    {
         $this->authorize('is_admin');
 
         return view('products.edit', \compact('product'));
@@ -80,7 +80,7 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(ProductRequest $request, $id)
-    {   
+    {
         $this->authorize('is_admin');
 
         ProductRepository::update($request, $id);
@@ -95,21 +95,16 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {   
+    {
         $this->authorize('is_admin');
 
-        try {
             ProductRepository::destroy($id);
 
             return back();
-        } catch (\PDOException) {
-
-            return back()->WithError();
-        }
     }
 
     public function block(Product $product)
-    {   
+    {
         $this->authorize('is_admin');
 
         ProductRepository::block($product->id);
@@ -127,7 +122,7 @@ class ProductController extends Controller
     }
 
     public function permantent_deleted($id)
-    {    
+    {
         $this->authorize('is_admin');
 
         $product = Product::findOrFail($id);
@@ -135,5 +130,14 @@ class ProductController extends Controller
         $product->forceDelete();
 
         return redirect('/products');
+    }
+
+    public function unblock_product($id)
+    {
+        $this->authorize('is_admin');
+
+        ProductRepository::unblock($id);
+
+        return back()->with('msg', 'Produto desbloqueado com sucesso');
     }
 }

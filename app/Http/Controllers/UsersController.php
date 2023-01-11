@@ -3,12 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Http\Requests;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\UserRepository;
-use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
@@ -18,7 +16,7 @@ class UsersController extends Controller
      * @return \Illuminate\View\View
      */
     public function index()
-    {   
+    {
         $this->authorize('is_admin');
 
         $users = UserRepository::all();
@@ -32,7 +30,7 @@ class UsersController extends Controller
      * @return \Illuminate\View\View
      */
     public function create()
-    {   
+    {
         $this->authorize('is_admin');
 
         return view('users.create');
@@ -46,7 +44,7 @@ class UsersController extends Controller
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(Request $request)
-    {   
+    {
         $this->authorize('is_admin');
 
         $this->validate($request, [
@@ -68,7 +66,7 @@ class UsersController extends Controller
      * @return \Illuminate\View\View
      */
     public function show($id)
-    {   
+    {
         $this->authorize('is_admin');
 
         $user =  UserRepository::details($id);
@@ -84,8 +82,8 @@ class UsersController extends Controller
      * @return \Illuminate\View\View
      */
     public function edit($id)
-    {  
-         $this->authorize('is_admin');
+    {
+        $this->authorize('is_admin');
 
         $user = UserRepository::edit($id);
 
@@ -101,7 +99,7 @@ class UsersController extends Controller
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function update(Request $request, $id)
-    {   
+    {
         $this->authorize('is_admin');
 
         $this->validate($request, [
@@ -123,7 +121,7 @@ class UsersController extends Controller
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function destroy($id)
-    {   
+    {
         $this->authorize('is_admin');
 
         UserRepository::destroy($id);
@@ -132,7 +130,7 @@ class UsersController extends Controller
     }
 
     public function block(User $user)
-    {  
+    {
         $this->authorize('is_admin');
 
         UserRepository::block($user->id);
@@ -149,12 +147,12 @@ class UsersController extends Controller
         return view('users.blocked', compact('users'));
     }
 
-    public function unblock_user(User $user)
+    public function unblock_user($id)
     {
         $this->authorize('is_admin');
 
-        UserRepository::unblock($user->id);
+        UserRepository::unblock($id);
 
-        // return view('users.index');
+        return back()->with('msg', 'Usuário desbloqueado com sucesso');
     }
 }

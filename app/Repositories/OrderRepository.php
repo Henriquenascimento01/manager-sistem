@@ -17,14 +17,14 @@ class OrderRepository
 
     public static function create_order($product_id, $user_id, $quantity)
     {
-        ProductStockManager::remove_product_from_stock();
+        // ProductStockManager::remove_product_from_stock($product_id);
 
         $orders = Orders::create([
             'product_id' => $product_id,
             'user_id' => $user_id,
             'quantity' => $quantity
         ]);
-
+        // dd($orders);
         return $orders;
     }
 

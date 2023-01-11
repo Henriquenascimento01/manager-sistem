@@ -23,12 +23,6 @@ class Product extends Model
         'status'
     ];
 
-    public function order()
-    {
-        return $this->belongsTo(Orders::class);
-    }
-
-    
     public function products_input()
     {
         return $this->hasMany(Products_input::class);

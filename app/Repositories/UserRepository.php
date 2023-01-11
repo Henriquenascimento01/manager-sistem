@@ -65,9 +65,6 @@ class UserRepository
 
     public static function unblock($id)
     {
-        $user = User::findOrFail($id);
-
-        $user->withTrashed()->find($id)->restore();
-        // return User::withTrashed()->find('id', $id)->restore();
+        return User::withTrashed()->find($id)->restore();
     }
 }

@@ -11,10 +11,6 @@ class Orders extends Model
 
     protected $fillable = ['product_id', 'user_id', 'quantity'];
 
-    public function products()
-    {
-        return $this->hasMany(Product::class);
-    }
 
     public function user()
     {
