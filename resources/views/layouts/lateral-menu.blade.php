@@ -62,7 +62,12 @@
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('users.index') }}" class="nav-link">
-                                <p>Lista de usuários</p>
+                                <p>Usuários ativos</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('blocked-users') }}" class="nav-link">
+                                <p>Usuários bloqueados</p>
                             </a>
                         </li>
                     </ul>
@@ -85,6 +90,11 @@
                         <li class="nav-item">
                             <a href="{{ route('products.index') }}" class="nav-link">
                                 <p>Lista de produtos</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('blocked-products') }}" class="nav-link">
+                                <p>Produtos bloqueados</p>
                             </a>
                         </li>
                     </ul>

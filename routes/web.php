@@ -28,12 +28,15 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('products', 'ProductController');
     Route::patch('/producs/{product}', 'ProductController@block')->name('products-block');
+    Route::get('/blocked-products', 'ProductController@blocked_products')->name('blocked-products');
 
     Route::resource('users', 'UsersController');
     Route::patch('/users/{user}', 'UsersController@block')->name('users-block');
+    Route::get('/blocked-users', 'UsersController@blocked_users')->name('blocked-users');
+    Route::patch('/unblock-users/{user}', 'UsersController@unblock_user')->name('unblock-users');
 
     Route::resource('/cart', 'CartController');
     Route::post('/delete-items', 'CartController@remove_items')->name('remove-items');
 
-    Route::resource('/order', 'OrdersController'); 
+    Route::resource('/order', 'OrdersController');
 });

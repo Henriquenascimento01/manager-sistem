@@ -123,4 +123,18 @@ class UsersController extends Controller
 
         return back();
     }
+
+    public function blocked_users()
+    {
+        $users = UserRepository::blocked_users();
+
+        return view('users.blocked', compact('users'));
+    }
+
+    public function unblock_user(User $user)
+    {
+        UserRepository::unblock($user->id);
+
+        return redirect('/home');
+    }
 }

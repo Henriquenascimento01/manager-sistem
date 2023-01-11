@@ -15,7 +15,7 @@ class UserRepository
     }
 
     public static function create($request)
-    {  
+    {
         $request_data = $request->all();
         $request_data['password'] = Hash::make($request_data['password']);
 
@@ -56,5 +56,18 @@ class UserRepository
         $user = User::findOrFail($id);
 
         $user->delete();
+    }
+
+    public static function blocked_users()
+    {
+        return User::onlyTrashed()->get();
+    }
+
+    public static function unblock($id)
+    {
+        $user = User::findOrFail($id);
+
+        $user->withTrashed()->find($id)->restore();
+        // return User::withTrashed()->find('id', $id)->restore();
     }
 }

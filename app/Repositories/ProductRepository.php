@@ -74,4 +74,9 @@ class ProductRepository
 
         $product->delete();
     }
+
+    public static function blocked_products()
+    {
+        return Product::onlyTrashed()->get();
+    }
 }

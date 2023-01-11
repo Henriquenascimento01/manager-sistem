@@ -102,4 +102,11 @@ class ProductController extends Controller
 
         return back();
     }
+
+    public function blocked_products()
+    {
+        $products = ProductRepository::blocked_products();
+
+        return view('products.blocked', compact('products'));
+    }
 }

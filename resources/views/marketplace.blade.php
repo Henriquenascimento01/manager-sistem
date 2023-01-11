@@ -14,12 +14,12 @@
             min-height: 100vh;
             padding-bottom: 100px;
             position: relative;
-            background-color: black;
+            background-color: white;
         }
 
         header {
-            background-color: black;
-            border-bottom: 1px solid gray;
+            background-color: #212529;
+            border-bottom: 1px solid;
         }
 
         .row {
@@ -87,7 +87,7 @@
 
         footer {
             text-align: center;
-            background-color: black;
+            background-color: #212529;
             padding: 30px;
             position: absolute;
             bottom: 0;
@@ -96,7 +96,7 @@
 
         footer p {
             margin-bottom: 0;
-            color: white
+            color: white;
         }
     </style>
 </head>
@@ -147,7 +147,6 @@
             @endforeach
         </div>
     </div>
-
     <footer>
         <p>Manager sistem &copy; 2023</p>
     </footer>
