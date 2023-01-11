@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
+use App\Models\User;
 
 class UserFactory extends Factory
 {
@@ -12,6 +13,8 @@ class UserFactory extends Factory
      *
      * @return array
      */
+    protected $model = User::class;
+
     public function definition()
     {
         return [
@@ -19,6 +22,7 @@ class UserFactory extends Factory
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'type' => $this->getType(),
             'remember_token' => Str::random(10),
         ];
     }
@@ -35,5 +39,12 @@ class UserFactory extends Factory
                 'email_verified_at' => null,
             ];
         });
+    }
+
+    private function getType()
+    {
+        $types = ['admin', 'client'];
+        shuffle($types);
+        return $types[0];
     }
 }

@@ -9,7 +9,9 @@ use App\Repositories\OrderRepository;
 class OrdersController extends Controller
 {
     public function index()
-    {   
+    {    
+       // $this->authorize('is_admin');
+   
         $orders = OrderRepository::all_orders();
 
         return view('orders.index', compact('orders'));

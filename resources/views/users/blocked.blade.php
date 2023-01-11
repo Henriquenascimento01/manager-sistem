@@ -28,9 +28,9 @@
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>
-                                        <form method="POST" action="{{ route('unblock-users', 'user' ) }}" accept-charset="UTF-8" style="display:inline">
+                                        <form method="POST" action="{{ route('unblock-users', $user->id ) }}" accept-charset="UTF-8" style="display:inline">
                                         @csrf
-                                            {{ method_field('PATCH') }}
+                                            {{ method_field('PUT') }}
                                             <button type="submit" class="btn btn-warning btn-sm" title="Delete User" onclick="return confirm(&quot;Deseja mesmo bloquear ?&quot;"><i class="fa fa-trash-o" aria-hidden="true"></i> Desbloquear</button>
                                         </form>
                                     </td>

@@ -37,25 +37,20 @@
                                      <td>{{ $product->name }}</td>
                                      <td>{{ $product->category}}</td>
                                      <td>{{ $product->status}}</td>
-
-                                     <!-- <td>
-                                         <a href="{{ route('products.edit', $product ) }}" class="btn btn-warning">Editar</a>
-                                     </td> -->
                                      <td>
-                                         <form action="{{ route('products-block', $product) }}" method="POST" class="form-group">
+                                         <form action="{{ route('products-block', $product->id ) }}" method="POST" class="form-group">
                                              @csrf
                                              @method('PATCH')
                                              <button type="submit" class="btn btn-warning">Desbloquear</button>
                                          </form>
                                      </td>
-                                     <!-- <td>
-                                         <form action="{{ route('products.destroy', $product) }}" method="POST" class="form-group">
+                                     <td>
+                                         <form action="{{ route('products.destroy', $product->id) }}" method="POST" class="form-group">
                                              @csrf
                                              @method('DELETE')
                                              <button type="submit" class="btn btn-danger">Apagar</button>
                                          </form>
-                                     </td> -->
-
+                                     </td>
                                  </tr>
                                  @endforeach
                              </tbody>

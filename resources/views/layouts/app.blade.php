@@ -37,6 +37,7 @@
                         <div class="col-sm-6">
                             @yield('title')
                         </div>
+                        @can('is_admin')
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item">
@@ -46,6 +47,7 @@
                                 @yield('breadcrumb')
                             </ol>
                         </div>
+                        @endcan
                     </div>
                 </div>
             </section>

@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Orders;
+use App\Services\ProductStockManager;
 use Illuminate\Support\Facades\Auth;
 
 class OrderRepository
@@ -16,6 +17,8 @@ class OrderRepository
 
     public static function create_order($product_id, $user_id, $quantity)
     {
+        ProductStockManager::remove_product_from_stock();
+
         $orders = Orders::create([
             'product_id' => $product_id,
             'user_id' => $user_id,

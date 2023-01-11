@@ -11,13 +11,15 @@ class CartController extends Controller
 {
     public function index()
     {
+        // $this->authorize('is_admin');
+
         $items =  ShoppingCart::cart_list();
 
         return view('shopping-car.shopping-car', compact('items'));
     }
 
     public function store(Request $request)
-    {
+    {    
         ShoppingCart::add_to_car($request);
 
         return redirect()->route('cart.index')->with('msg', 'Produto adicionado ao carrinho');

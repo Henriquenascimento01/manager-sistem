@@ -24,9 +24,9 @@
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                @can('is_admin')
                 <li class="nav-item">
                     <a href="#" class="nav-link">
-
                         <p>
                             Relatórios
                             <i class="right fas fa-angle-left"></i>
@@ -98,6 +98,7 @@
                             </a>
                         </li>
                     </ul>
+                    @endcan
                 </li>
 
                 <li class="nav-item">

@@ -18,7 +18,9 @@ class UsersController extends Controller
      * @return \Illuminate\View\View
      */
     public function index()
-    {
+    {   
+        $this->authorize('is_admin');
+
         $users = UserRepository::all();
 
         return view('users.index', compact('users'));
@@ -30,7 +32,9 @@ class UsersController extends Controller
      * @return \Illuminate\View\View
      */
     public function create()
-    {
+    {   
+        $this->authorize('is_admin');
+
         return view('users.create');
     }
 
@@ -42,7 +46,9 @@ class UsersController extends Controller
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(Request $request)
-    {
+    {   
+        $this->authorize('is_admin');
+
         $this->validate($request, [
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
@@ -62,7 +68,9 @@ class UsersController extends Controller
      * @return \Illuminate\View\View
      */
     public function show($id)
-    {
+    {   
+        $this->authorize('is_admin');
+
         $user =  UserRepository::details($id);
 
         return view('users.show', compact('user'));
@@ -76,7 +84,9 @@ class UsersController extends Controller
      * @return \Illuminate\View\View
      */
     public function edit($id)
-    {
+    {  
+         $this->authorize('is_admin');
+
         $user = UserRepository::edit($id);
 
         return view('users.edit', compact('user'));
@@ -91,7 +101,9 @@ class UsersController extends Controller
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function update(Request $request, $id)
-    {
+    {   
+        $this->authorize('is_admin');
+
         $this->validate($request, [
             'name' => 'required|max:255',
             'email' => 'required|email|max:255',
@@ -111,14 +123,18 @@ class UsersController extends Controller
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function destroy($id)
-    {
+    {   
+        $this->authorize('is_admin');
+
         UserRepository::destroy($id);
 
         return redirect('users')->with('flash_message', 'User deleted!');
     }
 
     public function block(User $user)
-    {
+    {  
+        $this->authorize('is_admin');
+
         UserRepository::block($user->id);
 
         return back();
@@ -126,6 +142,8 @@ class UsersController extends Controller
 
     public function blocked_users()
     {
+        $this->authorize('is_admin');
+
         $users = UserRepository::blocked_users();
 
         return view('users.blocked', compact('users'));
@@ -133,8 +151,10 @@ class UsersController extends Controller
 
     public function unblock_user(User $user)
     {
+        $this->authorize('is_admin');
+
         UserRepository::unblock($user->id);
 
-        return redirect('/home');
+        // return view('users.index');
     }
 }

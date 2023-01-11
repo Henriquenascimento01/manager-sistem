@@ -18,6 +18,12 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        \App\Events\UserOrderedItems::class => [
+            \App\Listeners\UpdateRemoveItemsInStock::class // Quando o usuário confirmar o pedido atualizar removendo a quantidade do estoque
+        ],
+        \App\Events\UserCancelledOrderItems::class => [
+            \App\Listeners\UpdateAddingBackItemsInStock::class // Quando o usuário cancelar o pedido atualizar devolver a quantidade ao estoque
+        ]
     ];
 
     /**

@@ -15,6 +15,8 @@ class ProductController extends Controller
      */
     public function index()
     {
+        $this->authorize('is_admin');
+
         $products = ProductRepository::all();
 
         return view('products.index', compact('products'));
@@ -26,7 +28,9 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
+    {   
+        $this->authorize('is_admin');
+
         return view('products.create');
     }
 
@@ -37,7 +41,9 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(ProductRequest $request)
-    {
+    {   
+        $this->authorize('is_admin');
+
         ProductRepository::create($request);
 
         return redirect('/products');
@@ -51,7 +57,6 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        
     }
 
     /**
@@ -61,7 +66,9 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Product $product)
-    {
+    {   
+        $this->authorize('is_admin');
+
         return view('products.edit', \compact('product'));
     }
 
@@ -73,7 +80,9 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(ProductRequest $request, $id)
-    {
+    {   
+        $this->authorize('is_admin');
+
         ProductRepository::update($request, $id);
 
         return redirect('/products');
@@ -86,18 +95,23 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
+    {   
+        $this->authorize('is_admin');
+
         try {
             ProductRepository::destroy($id);
 
             return back();
         } catch (\PDOException) {
+
             return back()->WithError();
         }
     }
 
     public function block(Product $product)
     {   
+        $this->authorize('is_admin');
+
         ProductRepository::block($product->id);
 
         return back();
@@ -105,8 +119,21 @@ class ProductController extends Controller
 
     public function blocked_products()
     {
+        $this->authorize('is_admin');
+
         $products = ProductRepository::blocked_products();
 
         return view('products.blocked', compact('products'));
+    }
+
+    public function permantent_deleted($id)
+    {    
+        $this->authorize('is_admin');
+
+        $product = Product::findOrFail($id);
+
+        $product->forceDelete();
+
+        return redirect('/products');
     }
 }

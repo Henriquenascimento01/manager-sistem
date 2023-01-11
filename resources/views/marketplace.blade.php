@@ -134,6 +134,7 @@
                 <img src="/img/movies/{{ $product->image }}" alt="{{ $product->name }}">
                 <div class="card-body">
                     <h5 class="card-name">{{ $product->name }}</h5>
+                    <h5 class="card-name">R$: {{ $product->unity_price }}</h5>
                     <form action="{{ route('cart.store') }}" method="POST" enctype="multpart/form-data">
                         @csrf
                         <input type="hidden" name="id" value="{{ $product->id }}">
