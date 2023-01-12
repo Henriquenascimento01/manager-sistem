@@ -131,7 +131,7 @@
         <div id="cards-container" class="row">
             @foreach($products as $product)
             <div class="card col-md-3">
-                <img src="/img/movies/{{ $product->image }}" alt="{{ $product->name }}">
+                <img src="/img/sem-imagem.png" alt="{{ $product->name }}">
                 <div class="card-body">
                     <h5 class="card-name">{{ $product->name }}</h5>
                     <h5 class="card-name">R$: {{ $product->unity_price }}</h5>
@@ -140,8 +140,10 @@
                         <input type="hidden" name="id" value="{{ $product->id }}">
                         <input type="hidden" name="name" value="{{ $product->name }}">
                         <input type="hidden" name="price" value="{{ $product->unity_price }}">
+                        @if($product->max_quantity >= 0)
                         <input type="number" class="form-control" name="quantity" value="0">
                         <button class="btn btn-primary mt-2">Comprar</button>
+                        @endif
                     </form>
                 </div>
             </div>

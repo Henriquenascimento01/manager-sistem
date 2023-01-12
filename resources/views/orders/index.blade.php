@@ -12,6 +12,7 @@
 
 
 @section('content')
+
 <div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-md-12">
@@ -36,24 +37,21 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($orders as $order)
+
+                                @if($orders)
+                                @foreach($orders['products'][0] as $order)
                                 <tr>
-                                    <td>{{ $order->product_id }}</td>
-                                    <td>{{ $order->product_name}}</td>
-                                    <td>{{ $order->user_id}}</td>
-                                    <td>{{ $order->quantity}}</td>
-                                    <td>
-                                        <a href="#" class="btn btn-warning">Editar</a>
-                                    </td>
-                                    <td>
-                                        <form action="{{ route('order.destroy', $order) }}" method="POST" class="form-group">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger">Apagar</button>
-                                        </form>
-                                    </td>
+                                    <td>{{ $order['product_name'] }}</td>
                                 </tr>
                                 @endforeach
+
+                                <form action="{{ route('delete-order') }}" method="POST" class="form-group">
+                                    @csrf
+                                    @method('DELETE')
+                                    <input type="hidden" name="orders" value="{{ json_encode($orders) }}">
+                                    <button type="submit" class="btn btn-danger">Cancelar</button>
+                                </form>
+                                @endif
                             </tbody>
                         </table>
                     </div>

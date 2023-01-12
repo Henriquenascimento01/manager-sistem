@@ -13,7 +13,7 @@
 <label for="permission" class="col-form-label required">Permissão</label>
     <select name="permission" id="permission" class="form-control">
         <option selected="disabled" name="permission" value="">Selecione</option>
-        <option name="permission" value="admin">Administrador</option>
+        <option name="permission" value="admin">Admin</option>
         <option name="permission" value="client">Client</option>
     </select>
 </div>

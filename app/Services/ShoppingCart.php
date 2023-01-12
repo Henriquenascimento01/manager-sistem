@@ -13,7 +13,7 @@ class ShoppingCart
     }
 
     public static function add_to_car($request)
-    {
+    {  
         $items_array =  \Cart::add([
             'id' => $request->id,
             'name' => $request->name,

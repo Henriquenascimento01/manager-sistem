@@ -17,7 +17,7 @@ class OrdersController extends Controller
     }
 
     public function store(Request $request)
-    {
+    {   
         $user_id = Auth::id();
         $orders = json_decode($request->order);
 
@@ -43,9 +43,14 @@ class OrdersController extends Controller
         return redirect('/order');
     }
 
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        OrderRepository::delete_order($id);
+
+        $data = $request->except('_token', '_method');
+
+        $orders = json_decode($data['orders'], true);
+
+        OrderRepository::delete_order($orders);
 
         return back()->with('msg', 'Pedido deletado com sucesso');
     }

@@ -32,6 +32,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/unblock-products/{product}', 'ProductController@unblock_product')->name('unblock-product');
 
     Route::resource('users', 'UsersController');
+    Route::put('/users/{users}', 'UsersController@update')->name('user-update');
     Route::patch('/users/{user}', 'UsersController@block')->name('users-block');
     Route::get('/blocked-users', 'UsersController@blocked_users')->name('blocked-users');
     Route::patch('/unblock-users/{user}', 'UsersController@unblock_user')->name('unblock-users');
@@ -40,4 +41,5 @@ Route::middleware('auth')->group(function () {
     Route::post('/delete-items', 'CartController@remove_items')->name('remove-items');
 
     Route::resource('/order', 'OrdersController');
+    Route::delete('/delete-order', 'OrdersController@destroy')->name('delete-order');
 });

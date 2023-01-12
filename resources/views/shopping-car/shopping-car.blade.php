@@ -45,8 +45,8 @@
                                 <tr>
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->price }}</td>
-                                    <td><input style="width: 100px " type="number" class="form-control" name="quantity" value="{{ $item->quantity }}"></td>
                                     <form action="{{ route('remove-items')}}" method="POST">
+                                        <td><input style="width: 100px " type="number" class="form-control" name="quantity" value="{{ $item->quantity }}"></td>
                                         @csrf
                                         <input type="hidden" name="id" value="{{ $item->id }}">
                                         <td><button class="btn btn-danger">Remover</button></td>
