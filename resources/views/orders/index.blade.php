@@ -4,21 +4,13 @@
 <h1>Meus pedidos</h1>
 @endsection
 
-@section('breadcrumb')
-<li class="breadcrumb-item">
-    <a href="#">Pedidos confirmados</a>
-</li>
-@endsection
-
-
 @section('content')
-
 <div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Listagem</h3>
+                    <h3 class="card-title mt-2">Lista de pedidos</h3>
                 </div>
                 <div class="card-body">
                     @if($message = Session::get('msg') )
@@ -26,34 +18,34 @@
                         {{ $message }}
                     </p>
                     @endif
-                    <div class="card-body p-0">
-                        <table class="table">
+
+                    <div class="card-body">
+                        @if($orders)
+                        <form action="{{ route('delete-order') }}" method="POST" class="form-group mt-2">
+                            @csrf
+                            @method('DELETE')
+                            <input type="hidden" name="orders" value="{{ json_encode($orders) }}">
+                            <button type="submit" class="btn btn-danger">Cancelar pedido</button>
+                        </form>
+                        @foreach($orders['products'][0] as $order)
+                        <table class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th>ID produto</th>
+                                    <th style="width: 10px">Número pedido</th>
                                     <th>Nome produto</th>
-                                    <th>ID usuário</th>
                                     <th>Quantidade</th>
                                 </tr>
                             </thead>
                             <tbody>
-
-                                @if($orders)
-                                @foreach($orders['products'][0] as $order)
                                 <tr>
+                                    <td>{{ $order['order_id'] }}</td>
                                     <td>{{ $order['product_name'] }}</td>
+                                    <td>{{ $order['quantity'] }}</td>
                                 </tr>
                                 @endforeach
-
-                                <form action="{{ route('delete-order') }}" method="POST" class="form-group">
-                                    @csrf
-                                    @method('DELETE')
-                                    <input type="hidden" name="orders" value="{{ json_encode($orders) }}">
-                                    <button type="submit" class="btn btn-danger">Cancelar</button>
-                                </form>
-                                @endif
                             </tbody>
                         </table>
+                        @endif
                     </div>
                     <div class="card-footer clearfix">
                     </div>

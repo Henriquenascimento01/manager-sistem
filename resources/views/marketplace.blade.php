@@ -14,7 +14,7 @@
             min-height: 100vh;
             padding-bottom: 100px;
             position: relative;
-            background-color: white;
+            background-color: gray;
         }
 
         header {
@@ -44,7 +44,7 @@
         }
 
         #search-container {
-            background-image: url('/img/nft.jpg');
+            background-image: url('/img/fundocinza.jpg');
             background-size: cover;
             background-position: center;
             height: 400px;
@@ -70,7 +70,9 @@
             max-width: 25%;
             border-radius: 10px;
             padding: 0;
+            border-color: #212529;
             margin: 5px;
+            background-color: gray;
         }
 
         #products-container img {

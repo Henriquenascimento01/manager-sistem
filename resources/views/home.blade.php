@@ -1,12 +1,10 @@
 @extends('layouts.app')
 
-@section('title')
-<h1>Dashboard</h1>
-@endsection
 
 
 @section('content')
 <div class="container">
+    @can('is_admin')
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -18,7 +16,7 @@
                         {{ session('status') }}
                     </div>
                     @endif
-                    @can('is_admin')
+
                     <div class="small-box bg-info">
                         <div class="inner">
                             <h3>{{ $quantity_products}}</h3>
@@ -48,7 +46,17 @@
                             <i class="ion ion-person-add"></i>
                         </div>
                     </div>
-                    @endcan
+
+                </div>
+            </div>
+        </div>
+    </div>
+    @endcan
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <strong>Seja bem vindo, utilize os menus laterais para navegação</strong>
                 </div>
             </div>
         </div>
