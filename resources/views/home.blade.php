@@ -1,7 +1,5 @@
 @extends('layouts.app')
 
-
-
 @section('content')
 <div class="container">
     @can('is_admin')
@@ -16,7 +14,6 @@
                         {{ session('status') }}
                     </div>
                     @endif
-
                     <div class="small-box bg-info">
                         <div class="inner">
                             <h3>{{ $quantity_products}}</h3>
@@ -46,7 +43,19 @@
                             <i class="ion ion-person-add"></i>
                         </div>
                     </div>
-
+                </div>
+                <div class="card-body">
+                    <p>Ranking dos 5 usuários que mais realizaram pedidos</p>
+                    @foreach($requests_by_users as $users_orders)
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr class="jsgrid-row">
+                                <td class="jsgrid-cell" style="width: 150px;">{{ $users_orders['name'] }}</td>
+                                <td class="jsgrid-cell jsgrid-align-right" style="width: 50px;">{{$users_orders['quantity'] }}</td>
+                                </td>
+                        </tbody>
+                    </table>
+                    @endforeach
                 </div>
             </div>
         </div>

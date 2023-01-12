@@ -66,7 +66,7 @@
 
                      <div class="card-footer clearfix">
                          <div>
-                             <!-- {{ $products->links() }} -->
+                             {{ $products->links() }}
                          </div>
                      </div>
                  </div>

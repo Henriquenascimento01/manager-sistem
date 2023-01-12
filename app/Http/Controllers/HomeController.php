@@ -24,12 +24,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // $this->authorize('is_admin');
-    
         $quantity_products = OverviewDashboard::quantity_products();
         $quantity_orders = OverviewDashboard::quantity_orders();
         $quantity_users = OverviewDashboard::quantity_ursers();
+        $requests_by_users = OverviewDashboard::requests_by_users();
 
-        return view('home', compact('quantity_products', 'quantity_orders', 'quantity_users'));
+        return view('home', compact('quantity_products', 'quantity_orders', 'quantity_users', 'requests_by_users'));
     }
 }

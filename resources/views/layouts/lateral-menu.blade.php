@@ -34,13 +34,8 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="../../index.html" class="nav-link">
-                                <p>Estoque de produtos</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="../../index2.html" class="nav-link">
-                                <p>Saída</p>
+                            <a href="/home" class="nav-link">
+                                <p>Dashboard</p>
                             </a>
                         </li>
                     </ul>
