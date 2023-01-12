@@ -110,6 +110,7 @@
                     <img src="" alt="">
                 </a>
                 <ul class="navbar-nav">
+                    @guest
                     <li class="nav-item">
                         <a href="{{ route('login') }}" class="nav-link">Entrar</a>
                     </li>
@@ -118,6 +119,12 @@
                         <a href="{{ route('register') }}" class="nav-link">Registrar-se</a>
                         @endif
                     </li>
+                    @endguest
+                    @auth
+                    <li class="nav-item">
+                        <a href="/home" class="nav-link">Home</a>
+                    </li>
+                    @endauth
                 </ul>
             </div>
         </nav>
@@ -140,10 +147,12 @@
                         <input type="hidden" name="id" value="{{ $product->id }}">
                         <input type="hidden" name="name" value="{{ $product->name }}">
                         <input type="hidden" name="price" value="{{ $product->unity_price }}">
-                        @if($product->max_quantity >= 0)
+                        @auth
+                        @if($product->max_quantity > 0)
                         <input type="number" class="form-control" name="quantity" value="0">
                         <button class="btn btn-primary mt-2">Comprar</button>
                         @endif
+                        @endauth
                     </form>
                 </div>
             </div>

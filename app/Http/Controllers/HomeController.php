@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\OverviewDashboard;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -14,7 +15,6 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        
     }
 
     /**
@@ -24,6 +24,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        // $this->authorize('is_admin');
+    
+        $quantity_products = OverviewDashboard::quantity_products();
+        $quantity_orders = OverviewDashboard::quantity_orders();
+        $quantity_users = OverviewDashboard::quantity_ursers();
+
+        return view('home', compact('quantity_products', 'quantity_orders', 'quantity_users'));
     }
 }

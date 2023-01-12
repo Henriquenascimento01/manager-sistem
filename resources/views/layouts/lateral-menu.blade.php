@@ -10,7 +10,7 @@
             </div>
             <div class="info">
                 <a href="#" class="d-block">{{ Auth::user()->name ?? 'None' }}</a>
-                <a class="btn btn-danger btn-sm" href="{{ route('logout') }}" onclick="event.preventDefault();	
+                <a class="btn btn-danger  mt-3" href="{{ route('logout') }}" onclick="event.preventDefault();	
                             document.getElementById('logout-form').submit();">
                     Sair
                 </a>
@@ -35,7 +35,7 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="../../index.html" class="nav-link">
-                                <p>Entrada</p>
+                                <p>Estoque de produtos</p>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -127,6 +127,13 @@
                         <li class="nav-item">
                             <a href="{{ route('cart.index') }}" class="nav-link">
                                 <p>Carrinho</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="/" class="nav-link">
+                                <p>Loja</p>
                             </a>
                         </li>
                     </ul>

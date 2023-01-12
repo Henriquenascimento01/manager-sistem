@@ -30,6 +30,7 @@
                                      <th>Nome</th>
                                      <th>Categoria</th>
                                      <th>Status</th>
+                                     <th>Quantidade</th>
                                  </tr>
                              </thead>
                              <tbody>
@@ -38,7 +39,7 @@
                                      <td>{{ $product->name }}</td>
                                      <td>{{ $product->category}}</td>
                                      <td>{{ $product->status}}</td>
-
+                                     <td>{{ $product->max_quantity}}</td>
                                      <td>
                                          <a href="{{ route('products.edit', $product ) }}" class="btn btn-warning">Editar</a>
                                      </td>
